@@ -31,7 +31,7 @@ Date: 2025-12-14
 
 from typing import List, Set, Tuple, Dict, Optional
 from enum import Enum
-from src.chess_engine import ChessBoard, Piece, Color, PieceType
+from .chess_engine import ChessBoard, Piece, Color, PieceType
 
 
 class TacticalPattern(Enum):
