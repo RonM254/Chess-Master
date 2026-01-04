@@ -32,8 +32,16 @@ Version: 0.4.0
 Date: 2025-12-14
 """
 
+import sys
+from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 from enum import Enum
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from src.chess_engine import ChessBoard, Piece, Color, PieceType
 from src.move_validator import MoveValidator
 

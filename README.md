@@ -14,6 +14,7 @@ A professional, production-ready chess analysis system built in pure Python. Fea
 ## 📋 Table of Contents
 
 - [Features](#-features)
+- [Recent Changes](#-recent-changes)
 - [Architecture](#-architecture)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
@@ -47,6 +48,63 @@ A professional, production-ready chess analysis system built in pure Python. Fea
 - ✅ **Unified Interface** - GameManager coordinates all modules seamlessly
 - ✅ **Production Quality** - Professional error handling and code organization
 - ✅ **Extensible Design** - Clean architecture makes Phase 2+ easy to implement
+
+---
+
+## 🔄 Recent Changes
+
+### Latest Updates (December 2025)
+
+#### ✅ Fixed Dependency Issues
+- **Fixed import errors** in all `src/` modules
+  - Changed relative imports (`from .chess_engine`) to absolute imports (`from src.chess_engine`)
+  - Added automatic path setup in `game_manager.py`, `move_validator.py`, and `position_evaluator.py`
+  - All modules now work correctly when run directly or imported as modules
+
+#### ✅ Fixed GameManager Bug
+- **Fixed `get_current_opening()` method**
+  - Previously tried to access non-existent `rec['key_ideas']` key
+  - Now correctly retrieves opening object and accesses `key_ideas` attribute
+  - Method now returns proper opening information with key ideas
+
+#### ✅ Added Game Review Tools
+- **Created `review_game.py`** - Interactive game reviewer
+  - Three modes: pre-defined example, interactive play, or paste custom moves
+  - Real-time analysis after each move
+  - Full game review with move-by-move breakdown
+  
+- **Created `example_game.py`** - Simple programmatic game review
+  - Easy-to-edit template for reviewing any game
+  - Just replace the `moves` list with your game
+  - Comprehensive analysis output
+
+#### 📝 How to Use New Features
+
+**Review a game programmatically:**
+```python
+# Edit example_game.py and add your moves
+moves = [
+    ("e2", "e4"),
+    ("e7", "e5"),
+    # ... your moves
+]
+python example_game.py
+```
+
+**Interactive game review:**
+```bash
+python review_game.py
+# Choose from 3 modes:
+# 1. Review example game
+# 2. Play moves interactively
+# 3. Paste your moves for review
+```
+
+#### 🔧 Technical Improvements
+- All imports now use consistent absolute import style
+- Automatic `sys.path` setup ensures modules work from any directory
+- Better error handling for invalid moves
+- Improved code organization and maintainability
 
 ---
 
@@ -173,6 +231,36 @@ python -m src.game_manager
 - Complete board position displayed
 - Comprehensive game analysis printed
 - Message: "ALL 4 PHASES WORKING TOGETHER!"
+
+### Reviewing a Game (NEW)
+
+**Option 1: Interactive Review**
+```bash
+python review_game.py
+```
+Choose from:
+- Review pre-defined example game
+- Play moves interactively with real-time analysis
+- Paste your moves for complete review
+
+**Option 2: Programmatic Review**
+```python
+# Edit example_game.py and replace the moves list:
+moves = [
+    ("e2", "e4"),
+    ("e7", "e5"),
+    # ... your moves
+]
+
+# Then run:
+python example_game.py
+```
+
+This will:
+- Play all your moves
+- Display final position
+- Show comprehensive analysis
+- Provide material balance, tactics, best moves
 
 ### Basic Python Usage
 
@@ -465,9 +553,17 @@ Chess Master/
 │   ├── move_validator.py           # Legal moves & tactics (700 lines)
 │   ├── position_evaluator.py       # Position evaluation (700 lines)
 │   └── game_manager.py             # Unified interface (500 lines)
+├── review_game.py                  # Interactive game reviewer (NEW)
+├── example_game.py                 # Programmatic game review template (NEW)
 ├── README.md                       # This file
-└── .gitignore                      # Git ignore file
+├── CHANGELOG.md                    # Detailed change history
+└── requirements.txt                # Dependencies (empty - pure Python)
 ```
+
+### New Files
+
+- **`review_game.py`** - Interactive game review tool with three modes
+- **`example_game.py`** - Simple template for programmatic game review
 
 ---
 
@@ -668,14 +764,18 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### Issue: Import errors when running individual files
 
-**Solution:** Don't run individual files directly!
+**Solution:** All imports are now fixed! You can run files directly:
 ```bash
-# ❌ WRONG - direct file execution
-python src/move_validator.py
+# ✅ NOW WORKS - direct file execution (imports fixed)
+python src/game_manager.py
+python review_game.py
+python example_game.py
 
-# ✅ CORRECT - run as module
+# ✅ ALSO WORKS - run as module
 python -m src.game_manager
 ```
+
+**Note:** All `src/` modules now automatically add the project root to `sys.path`, so imports work correctly whether run directly or as modules.
 
 ### Issue: Board display shows strange characters
 
@@ -918,3 +1018,9 @@ Next steps:
 **Status:** Phase 1 Complete ✅ | Phase 2-4 Optional
 
 **Last Updated:** December 14, 2025
+
+**Recent Updates:**
+- ✅ Fixed all import/dependency issues
+- ✅ Fixed `get_current_opening()` bug
+- ✅ Added `review_game.py` for interactive game review
+- ✅ Added `example_game.py` for programmatic game review

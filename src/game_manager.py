@@ -21,7 +21,15 @@ Example:
     >>> print(analysis)
 """
 
+import sys
+from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+# Add project root to path for imports
+project_root = Path(__file__).parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from src.chess_engine import ChessBoard, Color, PieceType
 from src.opening_book import OpeningBook
 from src.move_validator import MoveValidator
@@ -184,10 +192,20 @@ class GameManager:
         if eval_result['phase'] == 'opening':
             # Get recommended opening for this rating
             rec = self.get_opening_recommendation()
-            return {
-                'opening': rec['recommendation'],
-                'ideas': rec['key_ideas']
-            }
+            opening_name = rec['recommendation']
+            # Get the actual opening object to access key_ideas
+            opening = self.opening_book.get_opening_by_name(opening_name)
+            if opening:
+                return {
+                    'opening': opening_name,
+                    'ideas': opening.key_ideas
+                }
+            else:
+                # Fallback if opening not found
+                return {
+                    'opening': opening_name,
+                    'ideas': []
+                }
         
         return None
     
