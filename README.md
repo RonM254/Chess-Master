@@ -236,7 +236,7 @@ python -m src.game_manager
 
 **Option 1: Interactive Review**
 ```bash
-python review_game.py
+python src/review_game.py
 ```
 Choose from:
 - Review pre-defined example game
@@ -245,7 +245,7 @@ Choose from:
 
 **Option 2: Programmatic Review**
 ```python
-# Edit example_game.py and replace the moves list:
+# Edit src/example_game.py and replace the moves list:
 moves = [
     ("e2", "e4"),
     ("e7", "e5"),
@@ -253,7 +253,7 @@ moves = [
 ]
 
 # Then run:
-python example_game.py
+python src/example_game.py
 ```
 
 This will:
@@ -552,9 +552,9 @@ Chess Master/
 │   ├── opening_book.py             # Opening theory (600 lines)
 │   ├── move_validator.py           # Legal moves & tactics (700 lines)
 │   ├── position_evaluator.py       # Position evaluation (700 lines)
-│   └── game_manager.py             # Unified interface (500 lines)
-├── review_game.py                  # Interactive game reviewer (NEW)
-├── example_game.py                 # Programmatic game review template (NEW)
+│   ├── game_manager.py             # Unified interface (500 lines)
+│   ├── review_game.py              # Interactive game reviewer (Moved to src)
+│   └── example_game.py             # Programmatic game review template (Moved to src)
 ├── README.md                       # This file
 ├── CHANGELOG.md                    # Detailed change history
 └── requirements.txt                # Dependencies (empty - pure Python)
@@ -562,8 +562,8 @@ Chess Master/
 
 ### New Files
 
-- **`review_game.py`** - Interactive game review tool with three modes
-- **`example_game.py`** - Simple template for programmatic game review
+- **`src/review_game.py`** - Interactive game review tool with three modes
+- **`src/example_game.py`** - Simple template for programmatic game review
 
 ---
 
