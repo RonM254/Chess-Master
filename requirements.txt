@@ -1,4 +1,0 @@
-# Chess Master- Phase 1
-# This project uses only the Python standard library.
-# No external pip dependencies are required.
-

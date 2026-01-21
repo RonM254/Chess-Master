@@ -27,4 +27,5 @@ The entire chess engine, including move validation, opening theory, and position
 
 ## Project Structure
 *   `Chess_Analysis.ipynb`: The main application.
-*   `generate_notebook.py`: Utility script used to generate the notebook (can be ignored or used to regenerate).
+
+
